@@ -149,6 +149,14 @@ describe "Person" do
         penelope.call_friend(felix)
         expect(felix.happiness).to eq(8)
       end
+
+      it "returns a string that reflects the caller's side of the conversation" do
+        convo = "Hi #{felix.name}! It's #{penelope.name}. How are you?"
+        expect(penelope.call_friend(felix)).to eq(convo)
+
+        convo = "Hi #{penelope.name}! It's #{felix.name}. How are you?"
+        expect(felix.call_friend(penelope)).to eq(convo)
+      end
     end
 
     describe "#start_conversation" do
@@ -208,17 +216,5 @@ describe "Person" do
     end
 
   end
-  # def start_conversation(person, topic)
-  #   objects = [self, person]
-  #   if topic == "politics"
-  #     objects.each { |o| o.happiness -= 2}
-  #     first, second = ["partisan", "lobbyist"]
-  #   elsif topic == "weather"
-  #     objects.each { |o| o.happiness += 1}
-  #     first, second = ["sun", "rain"]
-  #   end
-  #   [first, second].each {|v| v ||= "blah" }
-  #   base_string = "blah blah #{first} blah #{second}"
-  # end
 
 end
