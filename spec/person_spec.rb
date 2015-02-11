@@ -23,7 +23,7 @@ describe "Person" do
     describe "#bank_account" do
 
       it "is initialized with a bank_account 'amount' of $25" do
-        expect(stella.happiness).to eq(8)
+        expect(stella.bank_account).to eq(25)
       end
 
       it "can change it bank_account" do
