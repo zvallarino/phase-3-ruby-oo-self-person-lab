@@ -7,15 +7,22 @@ describe "Person" do
   describe "#initialize" do
 
     let(:stella) { Person.new("Stella") }
+    let(:blanche) { Person.new("Blanche") }
+    let(:name_hash) { {stella => "Stella", :blanche => "Blanche"} }
+    let(:people) {[stella, blanche]}
 
     describe "#name" do
 
       it "knows its name" do
-        expect(stella.name).to eq("Stella")
+        name_hash.each do |person, name|
+          expect(person.name).to eq(name)
+        end
       end
 
       it "can't change its name" do
-        expect { stella.name = "Qwen" }.to raise_error 
+        name_hash.each do |person, name|
+          expect { person.name = "Qwen" }.to raise_error 
+        end
       end
 
     end
@@ -23,12 +30,14 @@ describe "Person" do
     describe "#bank_account" do
 
       it "is initialized with a bank_account 'amount' of $25" do
-        expect(stella.bank_account).to eq(25)
+        people.each { |person| expect(person.bank_account).to eq(25) }
       end
 
       it "can change it bank_account" do
-        original_amount = stella.bank_account
-        expect(stella.bank_account += 1 ).to eq(original_amount + 1)
+        people.each do |person|
+          original_amount = person.bank_account
+          expect(person.bank_account += 1 ).to eq(original_amount + 1)
+        end
       end
 
     end
@@ -36,19 +45,31 @@ describe "Person" do
     describe "#happiness" do
 
       it "is initialized with a happiness 'score' of 8" do
-        expect(stella.happiness).to eq(8)
+        people.each {|person| expect(person.happiness).to eq(8) }
       end
 
       it "can change it happiness" do
-        original_happiness = stella.happiness
-        stella.happiness += 1
-        expect(stella.happiness).to eq(original_happiness + 1)
+        people.each do |person|
+          original_happiness = person.happiness
+          person.happiness += 1
+          expect(person.happiness).to eq(original_happiness + 1)
+        end
       end
 
       it "doesn't exceed 10" do
-        original_happiness = stella.happiness
-        stella.happiness += 100 
-        expect(stella.happiness).to eq(10)
+        people.each do |person|
+          original_happiness = person.happiness
+          person.happiness += 100 
+          expect(person.happiness).to eq(10)
+        end
+      end
+
+      it "doesn't go below 0" do
+        people.each do |person|
+          original_happiness = person.happiness
+          person.happiness -= 100 
+          expect(person.happiness).to eq(0)
+        end
       end
       
     end
@@ -56,19 +77,31 @@ describe "Person" do
     describe "#hygiene" do
 
       it "is initialized with a hygiene 'score' of 8" do
-        expect(stella.hygiene).to eq(8)
+        people.each {|person| expect(person.hygiene).to eq(8) }
       end
 
       it "can change it hygiene" do
-        original_hygiene = stella.hygiene
-        stella.hygiene += 1 
-        expect(stella.hygiene).to eq(original_hygiene + 1)
+        people.each do |person|
+          original_hygiene = person.hygiene
+          person.hygiene += 1 
+          expect(person.hygiene).to eq(original_hygiene + 1)
+        end
       end
 
       it "doesn't exceed 10" do
-        original_hygiene = stella.hygiene
-        stella.hygiene += 100 
-        expect(stella.hygiene).to eq(10)
+        people.each do |person|
+          original_hygiene = person.hygiene
+          person.hygiene += 100 
+          expect(person.hygiene).to eq(10)
+        end
+      end
+
+      it "doesn't go below 0" do
+        people.each do |person|
+          original_hygiene = person.hygiene
+          person.hygiene -= 100 
+          expect(person.hygiene).to eq(0)
+        end
       end
       
     end
@@ -76,13 +109,15 @@ describe "Person" do
   end
 
   context "custom methods" do
+
     let(:penelope) { Person.new("Penelope") }
     let(:felix) { Person.new("Felix") }
+    let(:people) { [penelope, felix] }
 
     describe "#happy?" do
 
       it "returns true if happiness is greater than seven, else false" do
-        penelope.happiness = 0
+        penelope.happiness = 7
         expect(penelope.happy?).to eq(false)
         penelope.happiness = 8
         expect(penelope.happy?).to eq(true)
@@ -92,7 +127,7 @@ describe "Person" do
     describe "#clean?" do
 
       it "returns true if hygiene is greater than seven, else false" do
-        penelope.hygiene = 0
+        penelope.hygiene = 7
         expect(penelope.clean?).to eq(false)
         penelope.hygiene = 8
         expect(penelope.clean?).to eq(true)
@@ -102,16 +137,22 @@ describe "Person" do
     describe "#take_bath" do
       
       it "makes the person cleaner by 4 points" do
-        original = 5
-        penelope.hygiene = original
+        penelope.hygiene = 4
         penelope.take_bath
-        expect(penelope.hygiene).to eq(original + 4)
+        expect(penelope.hygiene).to eq(8)
       end
 
       it "returns a song" do
         penelope.hygiene = 5
         expect(penelope.take_bath).to eq("♪ Rub-a-dub just relaxing in the tub ♫")
       end
+
+      it "can't make a person cleaner by 10 points (hint: use the custom #hygiene= method)" do
+        penelope.hygiene = 9
+        penelope.take_bath
+        expect(penelope.hygiene).to eq(10)
+      end
+
     end
 
     describe "#get_paid" do
@@ -132,6 +173,44 @@ describe "Person" do
 
     end
 
+    describe "#work_out" do
+      
+      it "makes the person dirtier by 3 points" do
+        penelope.hygiene = 10
+        penelope.work_out
+        expect(penelope.hygiene).to eq(7)
+      end
+
+      it "never makes the person have negative dirty points
+      (hint: use the #hygiene= method)" do
+        penelope.hygiene = 1
+        penelope.work_out
+        expect(penelope.hygiene).to be >= 0
+        expect(penelope.hygiene).to eq(0)
+      end
+
+      it "makes the person happier by 2 points" do
+        penelope.happiness = 7
+        penelope.work_out
+        expect(penelope.happiness).to eq(9)
+      end
+
+      it "never makes the person have more than 10 happiness points
+      (hint: use the #happiness= method)" do
+        penelope.happiness = 9
+        penelope.work_out
+        expect(penelope.happiness).to be <= 10
+        expect(penelope.happiness).to eq(10)
+      end
+
+      it "returns Queen lyrics" do
+        penelope.hygiene = 5
+        expect(penelope.work_out).to eq("♪ another one bites the dust ♫")
+      end
+
+    end
+
+
     describe "#call_friend" do
 
       it "accepts one argument, an instance of the Person class" do
@@ -144,18 +223,27 @@ describe "Person" do
         expect(penelope.happiness).to eq(9)
       end
 
-      it "makes the person who got called happier by three points" do
+      it "makes the friend happier by three points" do
         felix.happiness = 5
         penelope.call_friend(felix)
         expect(felix.happiness).to eq(8)
       end
 
-      it "returns a string that reflects the caller's side of the conversation" do
-        convo = "Hi #{felix.name}! It's #{penelope.name}. How are you?"
-        expect(penelope.call_friend(felix)).to eq(convo)
+      it "never makes the happiness of either party exceed 10 
+        (hint: use the cutom #happiness= method)" do
+        [felix, penelope].each {|person| person.happiness = 9 }
+        penelope.call_friend(felix)
+        [felix, penelope].each do |person| 
+          expect(person.happiness <= 10).to eq(true)
+          expect(person.happiness).to eq(10)
+        end
+      end
 
-        convo = "Hi #{penelope.name}! It's #{felix.name}. How are you?"
-        expect(felix.call_friend(penelope)).to eq(convo)
+      it "returns a string that reflects the caller's side of the conversation" do
+        {felix => penelope, penelope => felix}.each do |caller, callee|
+          convo = "Hi #{callee.name}! It's #{caller.name}. How are you?"
+          expect(caller.call_friend(callee)).to eq(convo)
+        end
       end
     end
 
@@ -173,10 +261,19 @@ describe "Person" do
         end
 
         it "if topic is politics, it makes both people in the convo two points less happy" do
-          people = [penelope, felix]
-          people.each  { |p| p.happiness = 7 }
+          people.each  { |person| person.happiness = 7 }
           penelope.start_conversation(felix, "politics")
-          people.each  { |p| expect(p.happiness).to eq(5) }
+          people.each  { |person| expect(person.happiness).to eq(5) }
+        end
+
+        it "never makes either party less than 0 points happy (never negative)
+          (hint: use your #happiness= method)" do
+          people.each  { |person| person.happiness = 1 }
+          penelope.start_conversation(felix, "politics")
+          people.each  do |person| 
+            expect(person.happiness).to be >= 0
+            expect(person.happiness).to eq(0)
+          end
         end
 
       end
@@ -189,10 +286,19 @@ describe "Person" do
         end
   
         it "if topic is weather, it makes both people in the convo one point more happy" do
-          people = [penelope, felix]
           people.each  { |p| p.happiness = 7 }
           penelope.start_conversation(felix, "weather")
           people.each  { |p| expect(p.happiness).to eq(8) }
+        end
+
+        it "never makes either party more than 10 points happy
+          (hint: use your #happiness= method)" do
+          people.each  { |person| person.happiness = 10 }
+          penelope.start_conversation(felix, "weather")
+          people.each  do |person| 
+            expect(person.happiness).to be <= 10
+            expect(person.happiness).to eq(10)
+          end
         end
 
       end
@@ -205,7 +311,6 @@ describe "Person" do
         end
 
         it "if topic is not politics or weather, it doesn't affect happiness" do
-          people = [penelope, felix]
           people.each  { |p| p.happiness = 7 }
           penelope.start_conversation(felix, "other")
           people.each  { |p| expect(p.happiness).to eq(7) }
