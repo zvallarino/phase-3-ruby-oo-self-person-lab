@@ -6,6 +6,8 @@ resources: 1
 
 # OO Person
 
+![people](https://s3-us-west-2.amazonaws.com/web-dev-readme-photos/oo-labs/people.jpg)
+
 ## Introduction
 
 To practice object oriented programming (OOP), you're going to create a Person class. Instances of your person class should be able to get paid, take a bath, call a friend, and start a conversation. They should also be able to tell you if they are happy and/or clean.
