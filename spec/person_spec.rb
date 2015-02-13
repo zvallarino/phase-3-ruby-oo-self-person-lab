@@ -8,8 +8,9 @@ describe "Person" do
 
     let(:stella) { Person.new("Stella") }
     let(:blanche) { Person.new("Blanche") }
-    let(:name_hash) { {stella => "Stella", :blanche => "Blanche"} }
     let(:people) {[stella, blanche]}
+    let(:name_hash) { {stella => "Stella", blanche => "Blanche"} }
+    
 
     describe "#name" do
 
