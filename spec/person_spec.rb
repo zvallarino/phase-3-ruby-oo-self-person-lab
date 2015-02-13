@@ -189,7 +189,7 @@ describe "Person" do
       end
 
       it "never makes the person have negative dirty points
-      (hint: use the #hygiene= method)" do
+        (hint: use the #hygiene= method)" do
         penelope.hygiene = 1
         penelope.work_out
         expect(penelope.hygiene).to be >= 0
@@ -209,7 +209,7 @@ describe "Person" do
       end
 
       it "never makes the person have more than 10 happiness points
-      (hint: use the #happiness= method)" do
+        (hint: use the #happiness= method)" do
         penelope.happiness = 9
         penelope.work_out
         expect(penelope.happiness).to be <= 10
