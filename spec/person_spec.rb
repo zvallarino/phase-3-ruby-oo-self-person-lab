@@ -135,6 +135,24 @@ describe "Person" do
       end
     end
 
+    describe "#get_paid" do
+
+      it "accepts an argument of salary" do
+        expect { penelope.get_paid(100) }.to_not raise_error
+      end
+
+      it "increments bank_account by the salary" do
+        original_amount = penelope.bank_account
+        penelope.get_paid(100)
+        expect(penelope.bank_account).to eq(original_amount += 100)
+      end
+
+      it "returns 'all about the benjamins'" do
+        expect(penelope.get_paid(100)).to eq('all about the benjamins')
+      end
+
+    end
+
     describe "#take_bath" do
       
       it "makes the person cleaner by 4 points" do
@@ -154,22 +172,10 @@ describe "Person" do
         expect(penelope.hygiene).to eq(10)
       end
 
-    end
-
-    describe "#get_paid" do
-
-      it "accepts an argument of salary" do
-        expect { penelope.get_paid(100) }.to_not raise_error
-      end
-
-      it "increments bank_account by the salary" do
-        original_amount = penelope.bank_account
-        penelope.get_paid(100)
-        expect(penelope.bank_account).to eq(original_amount += 100)
-      end
-
-      it "returns 'all about the benjamins'" do
-        expect(penelope.get_paid(100)).to eq('all about the benjamins')
+      it "calls on the #hygiene= method to increment hygiene" do
+        penelope.hygiene = 9
+        expect(penelope).to receive(:hygiene=).with(13).and_return(10)
+        penelope.take_bath
       end
 
     end
@@ -190,6 +196,12 @@ describe "Person" do
         expect(penelope.hygiene).to eq(0)
       end
 
+      it "calls on the #hygiene= method to decrease hygiene" do
+        penelope.hygiene = 1
+        expect(penelope).to receive(:hygiene=).with(-2).and_return(0)
+        penelope.work_out
+      end    
+
       it "makes the person happier by 2 points" do
         penelope.happiness = 7
         penelope.work_out
@@ -203,6 +215,12 @@ describe "Person" do
         expect(penelope.happiness).to be <= 10
         expect(penelope.happiness).to eq(10)
       end
+
+      it "calls on the #happiness= method to increment happiness" do
+        penelope.happiness = 9
+        expect(penelope).to receive(:happiness=).with(11).and_return(10)
+        penelope.work_out
+      end      
 
       it "returns Queen lyrics" do
         penelope.hygiene = 5
@@ -239,6 +257,14 @@ describe "Person" do
           expect(person.happiness).to eq(10)
         end
       end
+
+      it "calls on the #happiness= method to increment happiness" do
+        [felix, penelope].each {|person| person.happiness = 9 }
+        people.each do |person| 
+          expect(person).to receive(:happiness=).with(12).and_return(10)
+        end
+        penelope.call_friend(felix)
+      end      
 
       it "returns a string that reflects the caller's side of the conversation" do
         {felix => penelope, penelope => felix}.each do |caller, callee|
@@ -277,6 +303,14 @@ describe "Person" do
           end
         end
 
+        it "calls on the #happiness= method" do
+          [felix, penelope].each {|person| person.happiness = 1 }
+          people.each do |person| 
+            expect(person).to receive(:happiness=).with(-1).and_return(0)
+          end
+          penelope.start_conversation(felix, "politics")
+        end
+
       end
 
       context "topic: weather" do
@@ -300,6 +334,14 @@ describe "Person" do
             expect(person.happiness).to be <= 10
             expect(person.happiness).to eq(10)
           end
+        end
+
+        it "calls on the #happiness= method" do
+          [felix, penelope].each {|person| person.happiness = 10 }
+          people.each do |person| 
+            expect(person).to receive(:happiness=).with(11).and_return(10)
+          end
+          penelope.start_conversation(felix, "weather")
         end
 
       end
