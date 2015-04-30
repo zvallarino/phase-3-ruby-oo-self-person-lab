@@ -37,6 +37,3 @@ Finally, the `start_conversation` method should accept two arguments, the person
 * If the topic is weather, both people get a little happier and the method returns "blah blah sun blah rain".
 * If the topic is not politics or weather, their happiness points don't change and the method returns "blah blah blah blah blah".
 
-## Resources
-
-* [Practical Object Oriented Design in Ruby: An Agile Primer](http://books.flatironschool.com/books/102)
