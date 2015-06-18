@@ -17,7 +17,7 @@ To practice object oriented programming (OOP), you're going to create a Person c
 3. Gain abiity to discern when to define your own `attr_reader`(getter) and `attr_writer`(setter) methods
 
 # Tutorial
-## RSpec Test 1: `#new`
+## RSpec Test 1: `::new`
 
 
 ```ruby
@@ -27,7 +27,7 @@ Person
       a new person is instantiated with a name (FAILED - 1)
 
 Failures:
-  1) Person instantiation ::new a new person is instantiated with a name
+  1) Person instantiation `::new` a new person is instantiated with a name
      Failure/Error: let(:stella) { Person.new("Stella") }
      NameError:
        uninitialized constant Person
