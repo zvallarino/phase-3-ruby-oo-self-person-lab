@@ -23,7 +23,7 @@ To practice object oriented programming (OOP), you're going to create a Person c
 ```ruby
 Person
   instantiation
-    #new
+    ::new
       a new person is instantiated with a name (FAILED - 1)
 
 Failures:
