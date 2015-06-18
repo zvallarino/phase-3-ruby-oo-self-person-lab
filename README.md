@@ -1,26 +1,19 @@
----
-tags: oo, object relations, todo, oop
-languages: ruby
-resources: 1
----
-
 # OO Person
 
 ![people](https://s3-us-west-2.amazonaws.com/web-dev-readme-photos/oo-labs/people.jpg)
 
-## Introduction
+## Objectives
+1. Gain proficiency instantiating a class
+2. Gain ability to discern when to implement `attr_accessor`, `attr_reader`,  and `attr_writer`
+3. Gain abiity to discern when to define your own `attr_reader`(getter) and `attr_writer`(setter) methods
 
+## Introduction
 To practice object oriented programming (OOP), you're going to create a Person class. Each instance of the `Person` class will have the ablity to:
   - get paid/receive payments
   - take a bath
   - call a friend
   - start a conversation
   - state if they are happy and/or clean
-
-## Objectives
-1. Gain proficiency instantiating a class
-2. Gain ability to discern when to implement `attr_accessor`, `attr_reader`,  and `attr_writer`
-3. Gain abiity to discern when to define your own `attr_reader`(getter) and `attr_writer`(setter) methods
 
 ## Instructions
 - First you need to create a person class that is initizlized with a name that cannot be changed.
