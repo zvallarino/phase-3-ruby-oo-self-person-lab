@@ -27,7 +27,7 @@ Person
       a new person is instantiated with a name (FAILED - 1)
 
 Failures:
-  1) Person instantiation #new a new person is instantiated with a name
+  1) Person instantiation ::new a new person is instantiated with a name
      Failure/Error: let(:stella) { Person.new("Stella") }
      NameError:
        uninitialized constant Person
