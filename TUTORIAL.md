@@ -4,7 +4,7 @@
 
 ## Introduction
 
-To practice object oriented programming (OOP), you're going to create a Person class. Each instance of the `Person` class will have the ablity to:
+To practice object oriented programming (OOP), you're going to create a Person class. Each instance of the `Person` class will have the ability to:
   - get paid/receive payments
   - take a bath
   - call a friend
@@ -14,7 +14,7 @@ To practice object oriented programming (OOP), you're going to create a Person c
 ## Objectives
 1. Gain proficiency instantiating a class
 2. Gain ability to discern when to implement `attr_accessor`, `attr_reader`,  and `attr_writer`
-3. Gain abiity to discern when to define your own `attr_reader`(getter) and `attr_writer`(setter) methods
+3. Gain ability to discern when to define your own `attr_reader`(getter) and `attr_writer`(setter) methods
 
 # Tutorial
 ## RSpec Test 1: `::new`
@@ -31,13 +31,19 @@ Failures:
      Failure/Error: let(:stella) { Person.new("Stella") }
      NameError:
        uninitialized constant Person
-     # ./spec/person_spec.rb:3:in `block (2 levels) in <top (required)>'
-     # ./spec/person_spec.rb:6:in `block (2 levels) in <top (required)>'
 ```
 
-Our 1st hint is the NameError `uninitialized contant Person`.  This error points to the fact that we do not have a person class.
+Our 1st hint is the NameError `uninitialized constant Person`.  This error points to the fact that we do not have a person class.
 
-Open up the person.rb file in lib directory and write the code that will get this test to pass. And then run rspec with the fail fast option, `rspec --f-f`, to get our next hint.
+Open up the person.rb file in lib directory and write the code that gets the first test to pass:  
+ 
+```ruby  
+  
+class Person  
+end  
+
+```
+And then run rspec with the fail fast option, `rspec --fail-fast`, to get our next hint.
 
 **2nd Hint**
 
@@ -51,15 +57,13 @@ Failures:
   1) Person instantiation ::new a new person is instantiated with a name
      Failure/Error: let(:stella) { Person.new("Stella") }
      ArgumentError:
-       wrong number of arguments (1 for 0)
-     # ./spec/person_spec.rb:3:in `initialize'
-     # ./spec/person_spec.rb:3:in `new'
-     # ./spec/person_spec.rb:3:in `block (2 levels) in <top (required)>'
-     # ./spec/person_spec.rb:6:in `block (2 levels) in <top (required)>'
+       wrong number of arguments (1 for 0)  
+       # ./spec/person_spec.rb:3:in `initialize'  
+       # ./spec/person_spec.rb:3:in `new'
 
 ```
 
-Our 2nd hint is the ArgumentError `wrong number of arguments (1 for 0)`. To get an even better idea of what this error means, we will examine the next 4 lines.
+Our 2nd hint is the ArgumentError `wrong number of arguments (1 for 0)`. To get an even better idea of what this error means, we will examine the next 2 lines.
 
 **Line 3: `# ./spec/person_spec.rb:3:in 'initialize'`**
 - In Ruby, `::new` typically calls the instance method `#initialize`
@@ -83,7 +87,7 @@ Update your code to reflect the change above and then run rspec with the fail fa
 ## RSpec Test 2: `#name`
 ```ruby
 Person
-  (passing code ommitted for brevity)
+  (passing code omitted for brevity)
   #initialize
     #name
       a new person knows its name once he/she has been initialized (FAILED - 1)
@@ -94,9 +98,6 @@ Failures:
      Failure/Error: expect(person.name).to eq(name)
      NoMethodError:
        undefined method `name' for #<Person:0x007f992d0ac508 @name="Stella">
-     # ./spec/person_spec.rb:19:in `block (6 levels) in <top (required)>'
-     # ./spec/person_spec.rb:18:in `each'
-     # ./spec/person_spec.rb:18:in `block (5 levels) in <top (required)>'
 
 ```
 
@@ -123,7 +124,7 @@ Update your code to reflect the change above and then run rspec with the fail fa
 ## RSpec Test 3: `#bank_account`
 ```ruby
 Person
-(passing code ommitted for brevity)
+(passing code omitted for brevity)
   #initialize
     #bank_account
       a new person instance is initialized with a bank_account balance of $25 (FAILED - 1)
@@ -133,9 +134,6 @@ Failures:
      Failure/Error: people.each { |person| expect(person.bank_account).to eq(25) }
      NoMethodError:
        undefined method `bank_account' for #<Person:0x007fd0714cd3f0 @name="Stella">
-     # ./spec/person_spec.rb:32:in `block (6 levels) in <top (required)>'
-     # ./spec/person_spec.rb:32:in `each'
-     # ./spec/person_spec.rb:32:in `block (5 levels) in <top (required)>'
 
 ```
 
@@ -162,7 +160,7 @@ At this point, when we run rspec with the fail fast option we should see this er
 
 ```ruby
 Person
-(passing code ommitted for brevity)
+(passing code omitted for brevity)
   #initialize
     #bank_account
       a person instance can change his/her bank_account amount (FAILED - 1)
@@ -173,9 +171,6 @@ Failures:
      Failure/Error: expect(person.bank_account += 1).to eq (original_amount + 1)
      NoMethodError:
        undefined method `bank_account=' for #<Person:0x007fa6cba6d3c0 @name="Stella", @bank_account=25>
-     # ./spec/person_spec.rb:38:in `block (6 levels) in <top (required)>'
-     # ./spec/person_spec.rb:36:in `each'
-     # ./spec/person_spec.rb:36:in `block (5 levels) in <top (required)>'
 
 ```
 
@@ -201,7 +196,7 @@ end
 
 ```ruby
 Person
-  (passing code ommitted for brevity)
+  (passing code omitted for brevity)
   #initialize
     #happiness
       a new person instance is initialized with a happiness index of 8 (FAILED - 1)
@@ -211,9 +206,6 @@ Failures:
      Failure/Error: people.each { |person| expect(person.happiness).to eq(8)}
      NoMethodError:
        undefined method `happiness' for #<Person:0x007fd2ac3ab228 @name="Stella", @bank_account=25>
-     # ./spec/person_spec.rb:45:in `block (6 levels) in <top (required)>'
-     # ./spec/person_spec.rb:45:in `each'
-     # ./spec/person_spec.rb:45:in `block (5 levels) in <top (required)>'
 
 
 ```
@@ -239,7 +231,7 @@ At this point, when we run rspec with the fail fast option we should see this er
 
 ```ruby
 Person
-  (passing code ommitted for brevity)
+  (passing code omitted for brevity)
   #initialize
     #happiness
       a person instance can change his/her happiness index (FAILED - 1)
@@ -250,9 +242,6 @@ Failures:
      Failure/Error: person.happiness += 1
      NoMethodError:
        undefined method `happiness=' for #<Person:0x007fb5db9f1b70>
-     # ./spec/person_spec.rb:51:in `block (6 levels) in <top (required)>'
-     # ./spec/person_spec.rb:49:in `each'
-     # ./spec/person_spec.rb:49:in `block (5 levels) in <top (required)>'
 ```
 
 How do we change our code base to reflect that a person should be able to know how happy he/she is and also be able to change increase or decrease his/her happiness index?
@@ -276,7 +265,7 @@ When we run rspec again we should see this error message:
 
 ```ruby
 Person
-  (passing code ommitted for brevity)
+  (passing code omitted for brevity)
   #initialize
     #happiness
       a person's happiness doesn't exceed 10 (FAILED - 1)
@@ -287,16 +276,11 @@ Failures:
 
        expected: 10
             got: 108
-
-       (compared using ==)
-     # ./spec/person_spec.rb:60:in `block (6 levels) in <top (required)>'
-     # ./spec/person_spec.rb:57:in `each'
-     # ./spec/person_spec.rb:57:in `block (5 levels) in <top (required)>'
 ```
 
-Hmmm ... this is interesting.  It appears that we need to define our setter/attr_writter for happiness in such a way as that its index never greater than 10.
-
-See if you can get the above test to pass and then compare your answer to the one below. Do not fret if your code does not explictly matche the solution - the two most important things are that:
+Hmmm ... this is interesting.  It appears that we need to define our setter/attr_writer for happiness in such a way as that its index never greater than 10.
+attr_writer
+See if you can get the above test to pass and then compare your answer to the one below. Do not fret if your code does not explicitly match the solution - the two most important things are that:
 
  - you understand what your code is doing, and
  - that your code works (you can refactor your solution later)
@@ -325,7 +309,7 @@ The next error we see deals with setting a limit on how unhappy a person can be:
 
 ```ruby
 Person
-  (passing code ommitted for brevity)
+  (passing code omitted for brevity)
   #happiness
     a person's happiness doesn't go below 0 (FAILED - 1)
 
@@ -337,13 +321,10 @@ Failures:
             got: -92
 
        (compared using ==)
-     # ./spec/person_spec.rb:68:in `block (6 levels) in <top (required)>'
-     # ./spec/person_spec.rb:65:in `each'
-     # ./spec/person_spec.rb:65:in `block (5 levels) in <top (required)>'
 
 ```
 
-We get the above test to pass by simply adding a line that handles this specific situation to our setter/attr_writter for happiness:
+We get the above test to pass by simply adding a line that handles this specific situation to our setter/attr_writer for happiness:
 
 ```ruby
 class Person
@@ -369,7 +350,7 @@ end
 
 ```ruby
 Person
-  (passing code ommitted for brevity)
+  (passing code omitted for brevity)
   #hygiene
     a person instance is initialized with a hygiene index of 8 (FAILED - 1)
 
@@ -378,16 +359,13 @@ Failures:
      Failure/Error: people.each { |person| expect(person.hygiene).to eq(8) }
      NoMethodError:
        undefined method `hygiene' for #<Person:0x007f94c95dc3b0>
-     # ./spec/person_spec.rb:75:in `block (6 levels) in <top (required)>'
-     # ./spec/person_spec.rb:75:in `each'
-     # ./spec/person_spec.rb:75:in `block (5 levels) in <top (required)>'
 ```
 
 Reading through line 73 - 99 in `spec/person_spec.rb` and comparing it to lines 43 - 71 we should notice the similarities between the tests for `#hygiene` and `#happiness`.
 
 Given that we have just worked on `#happiness` see if you can get all the tests for `#hygiene` to pass.  Once you have given the tests a try (and hopefully gotten your code to pass the test) compare your solution to the solution below.
 
-Again, do not fret if your code does not explictly matche the solution - the two most important things are that:
+Again, do not fret if your code does not explicitly match the solution - the two most important things are that:
 
  - you understand what your code is doing, and
  - that your code works (you can refactor your solution later)
@@ -434,14 +412,13 @@ Failures:
      Failure/Error: expect(penelope.happy?).to eq(false)
      NoMethodError:
        undefined method `happy?' for #<Person:0x007fd14504c400>
-     # ./spec/person_spec.rb:114:in `block (4 levels) in <top (required)>'
 ```
 
 NoMethodError means we need to define `#happy?`. Also according to line 112 in `spec/person_spec.rb` `#happy`  needs to `"returns true if happiness is greater than seven, else false"`. We can get this test to pass this way:
 
 ```ruby
 class person
-  (previous code ommitted for brevity)
+  (previous code omitted for brevity)
   if self.happiness > 7
     true
   else
@@ -456,7 +433,7 @@ The above code is very explicit (and verbose). Can you think of a one-line code 
 
 ```ruby
 Person
-  (passing code ommitted for brevity)
+  (passing code omitted for brevity)
   non-attribute instance methods
     #clean?
       returns true if hygiene is greater than seven, else false (FAILED - 1)
@@ -467,7 +444,6 @@ Failures:
      Failure/Error: expect(penelope.clean?).to eq(false)
      NoMethodError:
        undefined method `clean?' for #<Person:0x007fa0848f15c0>
-     # ./spec/person_spec.rb:123:in `block (4 levels) in <top (required)>'
 ```
 
 Notice the similarity between the tests for `#clean?` and `#happy?`(compare lines 111-118 and lines 120 - 127)? Therefore our method definition for `#clean` looks like this:
@@ -475,7 +451,7 @@ Notice the similarity between the tests for `#clean?` and `#happy?`(compare line
 ```ruby
 class Person
 
-(previous code ommitted for brevity)
+(previous code omitted for brevity)
 
   def clean?
     self.hygiene > 7
@@ -500,21 +476,19 @@ Person
 Failures:
   1) Person non-attribute instance methods #get_paid accepts an argument of salary
      Failure/Error: expect { penelope.get_paid(100) }.to_not raise_error
-       expected no Exception, got #<NoMethodError: undefined method `get_paid' for #<Person:0x007fd89211a7c0>> with backtrace:
-         # ./spec/person_spec.rb:131:in `block (5 levels) in <top (required)>'
-         # ./spec/person_spec.rb:131:in `block (4 levels) in <top (required)>'
-     # ./spec/person_spec.rb:131:in `block (4 levels) in <top (required)>'
+       expected no Exception, got #<NoMethodError: undefined method `get_paid' for #<Person:0x007fd89211a7c0>>:
+
 ```
 
 Read lines 129 - 143 in `spec/person_spec.rb` to get a better understanding of the requirements for the `#get_paid` method and then write out the code that gets the test to pass.
 
 ```ruby
 class Person
-(previous code ommitted for brevity)
+(previous code omitted for brevity)
 
   def get_paid(salary)
     self.bank_account += salary
-    "all about the benjamns"
+    "all about the benjamins"
   end
 end
 ```
@@ -532,10 +506,9 @@ Failures:
      Failure/Error: penelope.take_bath
      NoMethodError:
        undefined method `take_bath' for #<Person:0x007ff4ba1410c0>
-     # ./spec/person_spec.rb:148:in `block (4 levels) in <top (required)>'
 
 ```
-Let's stwitch things up a bit. In addition to running rspec, we also going to be reading through the specs for the particular method we are trying to get to work.
+Let's switch things up a bit. In addition to running rspec, we also going to be reading through the specs for the particular method we are trying to get to work.
 
 The lines we are interested in for `#take_bath` are lines 145 - 168:
 
@@ -591,7 +564,7 @@ Then we make sure that `#take_bath` returns a song:
 ```
 
 ## RSpec Test 10: `#work_out`
-run rspec, watch it fail, and read the erorr message:
+run rspec, watch it fail, and read the error message:
 
 ```ruby
 Person
@@ -604,7 +577,6 @@ Failures:
      Failure/Error: penelope.work_out
      NoMethodError:
        undefined method `work_out' for #<Person:0x007fec9a90e988>
-     # ./spec/person_spec.rb:174:in `block (4 levels) in <top (required)>'
 
 ```
 
@@ -708,10 +680,7 @@ Person
 Failures:
   1) Person non-attribute instance methods #call_friend accepts one argument, an instance of the Person class
      Failure/Error: expect { penelope.call_friend(felix) }.to_not raise_error
-       expected no Exception, got #<NoMethodError: undefined method `call_friend' for #<Person:0x007ff992121928>> with backtrace:
-         # ./spec/person_spec.rb:220:in `block (5 levels) in <top (required)>'
-         # ./spec/person_spec.rb:220:in `block (4 levels) in <top (required)>'
-     # ./spec/person_spec.rb:220:in `block (4 levels) in <top (required)>'
+       expected no Exception, got #<NoMethodError: undefined method `call_friend' for #<Person:0x007ff992121928>>:
 
 ```
 
@@ -736,7 +705,7 @@ describe "#call_friend" do
       end
 
       it "never makes the happiness of either party exceed 10
-        (hint: use the cutom #happiness= method)" do
+        (hint: use the custom #happiness= method)" do
         [felix, penelope].each {|person| person.happiness = 9 }
         penelope.call_friend(felix)
         [felix, penelope].each do |person|
@@ -769,7 +738,7 @@ First we define the method `#call_friend`, which takes an argument:
   end
 ```
 
-Increase the happiness of both the person who makes the call and the person who recieves the call by 3 points.  There are couple of ways we could do this but here we create an array to hold both the caller and the call-reciever:
+Increase the happiness of both the person who makes the call and the person who receives the call by 3 points.  There are couple of ways we could do this but here we create an array to hold both the caller and the call-receiver:
 
 ```ruby
   def call_friend(friend)
@@ -893,5 +862,5 @@ When the topic of conversation is neither politics or weather, each person's hap
 
 That's it! All of our tests pass.
 
-A key part of getting better of programming, is learning to spot the places that need refactoring.  Go through your solution and try to find pieces of code that could be written better/tighter/more succintly.
+A key part of getting better of programming, is learning to spot the places that need refactoring.  Go through your solution and try to find pieces of code that could be written better/tighter/more succinctly.
 
