@@ -2,20 +2,6 @@
 
 ![people](https://s3-us-west-2.amazonaws.com/web-dev-readme-photos/oo-labs/people.jpg)
 
-## Introduction
-
-To practice object oriented programming (OOP), you're going to create a Person class. Each instance of the `Person` class will have the ability to:
-  - get paid/receive payments
-  - take a bath
-  - call a friend
-  - start a conversation
-  - state if they are happy and/or clean
-
-## Objectives
-1. Gain proficiency instantiating a class
-2. Gain ability to discern when to implement `attr_accessor`, `attr_reader`,  and `attr_writer`
-3. Gain ability to discern when to define your own `attr_reader`(getter) and `attr_writer`(setter) methods
-
 # Tutorial
 ## RSpec Test 1: `::new`
 
@@ -35,12 +21,12 @@ Failures:
 
 Our 1st hint is the NameError `uninitialized constant Person`.  This error points to the fact that we do not have a person class.
 
-Open up the person.rb file in lib directory and write the code that gets the first test to pass:  
- 
-```ruby  
-  
-class Person  
-end  
+Open up the person.rb file in lib directory and write the code that gets the first test to pass:
+
+```ruby
+
+class Person
+end
 
 ```
 And then run rspec with the fail fast option, `rspec --fail-fast`, to get our next hint.
@@ -57,8 +43,8 @@ Failures:
   1) Person instantiation ::new a new person is instantiated with a name
      Failure/Error: let(:stella) { Person.new("Stella") }
      ArgumentError:
-       wrong number of arguments (1 for 0)  
-       # ./spec/person_spec.rb:3:in `initialize'  
+       wrong number of arguments (1 for 0)
+       # ./spec/person_spec.rb:3:in `initialize'
        # ./spec/person_spec.rb:3:in `new'
 
 ```
