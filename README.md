@@ -5,18 +5,28 @@
 ## Objectives
 1. Gain proficiency instantiating a class
 2. Gain ability to discern when to implement `attr_accessor`, `attr_reader`,  and `attr_writer`
-3. Gain abiity to discern when to define your own `attr_reader`(getter) and `attr_writer`(setter) methods
+3. Gain ability to discern when to define your own `attr_reader`(getter) and `attr_writer`(setter) methods
+
 
 ## Introduction
-To practice object oriented programming (OOP), you're going to create a Person class. Each instance of the `Person` class will have the ablity to:
+=======
+
+To practice object oriented programming (OOP), you're going to create a Person class. Each instance of the `Person` class will have the ability to:
   - get paid/receive payments
   - take a bath
   - call a friend
   - start a conversation
   - state if they are happy and/or clean
 
+
+## Objectives
+1. Gain proficiency instantiating a class
+2. Gain ability to discern when to implement `attr_accessor`, `attr_reader`,  and `attr_writer`
+3. Gain abiity to discern when to define your own `attr_reader`(getter) and `attr_writer`(setter) methods
+
+
 ## Instructions
-- First you need to create a person class that is initizlized with a name that cannot be changed.
+- First you need to create a person class that is initialized with a name that cannot be changed.
 - Each instance of class `Person`should be able to remember their name
 - Each instance of  class `Person` should start with $25 in their bank accounts
 - Each instance of  class `Person` should start with eight happiness points
@@ -25,10 +35,9 @@ To practice object oriented programming (OOP), you're going to create a Person c
 - The amount in the bank account should also be able to change, though it has no max or min.
 
 ##### Non-attribute defining instance methods
+1. The `clean?` and `happy?` methods are pretty similar: they should return `true` if the happiness or hygiene points exceed seven. Otherwise they should return false.
 
-1. The `clean?` and `happy?` methods are pretty similiar: they should return `true` if the happiness or hygiene points exceed seven. Otherwise they should return false.
-
-2. The `get_paid` method should accept a salary amount and add this to the person's bank account. Then the method should return the string "all about the benjamins".
+2. The `get_paid` method should accept a salary amount and add the accepted salary to the person's bank account. Then the method should return the string "all about the benjamins".
 
 3. The `take_bath` method should increment the person's hygiene points by four and return the string "♪ Rub-a-dub just relaxing in the tub ♫".
 
