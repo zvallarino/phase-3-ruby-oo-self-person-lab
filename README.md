@@ -42,4 +42,4 @@ To practice object oriented programming (OOP), you're going to create a Person c
   * If the topic is weather, both people get a little happier and the method returns "blah blah sun blah rain".
   * If the topic is not politics or weather, their happiness points don't change and the method returns "blah blah blah blah blah".
 
-<a href='https://learn.co/lessons/oo-person' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/oo-person' title='OO Person'>OO Person</a> on Learn.co and start learning to code for free.</p>
