@@ -22,7 +22,7 @@ RSpec.describe "Person" do
 
         it "a new person instance cannot overwrite the name it was instantied with" do
           name_hash.each do |person, name|
-            expect {person.name = "some_new_name"}.to raise_error
+            expect {person.name = "some_new_name"}.to raise_error(NoMethodError)
           end
         end
       end
