@@ -1,12 +1,12 @@
-# Person Lab
+# OO Person Lab
 
 ![people](https://s3-us-west-2.amazonaws.com/web-dev-readme-photos/oo-labs/people.jpg)
 
-## Objectives
+## Learning Goals
 
-1. Gain proficiency instantiating a class.
-2. Gain ability to discern when to implement `attr_accessor`, `attr_reader`,  and `attr_writer`.
-3. Gain ability to discern when to define your own `attr_reader` (getter) and `attr_writer` (setter) methods.
+- Gain proficiency instantiating a class
+- Gain ability to discern when to implement `attr_accessor`, `attr_reader`,  and `attr_writer`
+- Gain ability to discern when to define your own `attr_reader` (getter) and `attr_writer` (setter) methods
 
 ## Introduction
 
