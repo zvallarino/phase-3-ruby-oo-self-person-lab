@@ -56,7 +56,9 @@ of the class, we call `ClassName.new`, which then calls the instance method
 
 ## Instructions
 
-Create a `Person` class with the following behavior:
+Create a `Person` class with the behavior described below. You can use `attr_`
+macros for some of these deliverables; for others, you'll need to write custom
+getter and/or setter methods.
 
 - `Person.new(name)`: takes an argument of a name and saves it to the object.
   The person's name _should not_ be able to change after initialization. When a
@@ -100,7 +102,7 @@ Create a `Person` class with the following behavior:
   the string `"♪ Rub-a-dub just relaxing in the tub ♫"`.
 
 - `Person#work_out`: increments the person's happiness by two points, decreases
-  their hygiene by three points, and return the Queen lyrics,
+  their hygiene by three points, and returns the Queen lyrics,
   `"♪ another one bites the dust ♫"`.
 
 - `Person#call_friend(friend)`: accepts another instance of the `Person` class,
